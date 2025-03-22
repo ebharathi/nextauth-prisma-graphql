@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+<body>
 
-First, run the development server:
+  <h1><i class="fas fa-layer-group"></i> Fullstack GraphQL Monorepo</h1>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  <p>
+    A modern, powerful fullstack monorepo built with <span class="badge">Next.js</span>, <span class="badge">GraphQL</span>, <span class="badge">Prisma</span>, and <span class="badge">Docker</span>.  
+    Fully typed, scalable, and production-ready architecture for building robust SaaS products.
+  </p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  <div class="section">
+    <h2><i class="fas fa-lock icon"></i> Authentication</h2>
+    <p>
+      Seamless auth using <strong>NextAuth</strong> supporting:
+    </p>
+    <ul>
+      <li><i class="fas fa-key icon"></i> OAuth Providers (Google, GitHub, etc.)</li>
+      <li><i class="fas fa-envelope icon"></i> Custom Email + Password flow</li>
+      <li><i class="fas fa-user-shield icon"></i> Session-based server protection</li>
+    </ul>
+  </div>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  <div class="section">
+    <h2><i class="fas fa-database icon"></i> Database</h2>
+    <p>
+      Built with <strong>Prisma ORM</strong> and supports:
+    </p>
+    <ul>
+      <li><i class="fas fa-table icon"></i> PostgreSQL / SQLite</li>
+      <li><i class="fas fa-code-branch icon"></i> Safe typed queries</li>
+      <li><i class="fas fa-magic icon"></i> Auto migrations and seeding</li>
+    </ul>
+  </div>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  <div class="section">
+    <h2><i class="fas fa-rocket icon"></i> GraphQL API</h2>
+    <p>
+      API built using <strong>Nexus</strong> (code-first schema) integrated with Prisma context:
+    </p>
+    <ul>
+      <li><i class="fas fa-code icon"></i> Modular schema structure</li>
+      <li><i class="fas fa-shield-alt icon"></i> Auth-aware resolvers</li>
+      <li><i class="fas fa-terminal icon"></i> Runs inside <code>/api/graphql</code> route</li>
+    </ul>
+  </div>
 
-## Learn More
+  <div class="section">
+    <h2><i class="fas fa-boxes icon"></i> Monorepo Architecture</h2>
+    <p>
+      A well-structured monorepo-like layout:
+    </p>
+    <ul>
+      <li><code>src/app</code> – Next.js App Router pages</li>
+      <li><code>graphql/</code> – GraphQL schema & resolvers</li>
+      <li><code>lib/</code> – Shared server-side logic (auth, mail, context)</li>
+      <li><code>prisma/</code> – DB schema and migrations</li>
+    </ul>
+  </div>
 
-To learn more about Next.js, take a look at the following resources:
+  <div class="section">
+    <h2><i class="fab fa-docker icon"></i> Docker Ready</h2>
+    <p>
+      Easily deployable with Docker and supports CI/CD integrations. Local or cloud database can be used, with environment-aware secrets via <code>example.env</code>.
+    </p>
+  </div>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</body>
+</html>
