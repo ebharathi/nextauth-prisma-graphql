@@ -12,5 +12,9 @@ export const User = objectType({
     t.field(np.User.role)
     t.field(np.User.avatar)
     t.field(np.User.createdAt)
+    t.field(np.User.isActive)
+    t.field(np.User.lastLoginAt)
+    t.field(np.User.lastLogoutAt)
+    t.field(np.User.isVerified)
   },
 })

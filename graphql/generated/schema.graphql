@@ -12,7 +12,7 @@ type Mutation {
 }
 
 type Query {
-  ok: Boolean!
+  getUser: User
 }
 
 enum Role {
@@ -35,6 +35,10 @@ type User {
   createdAt: DateTime!
   email: String!
   id: ID!
+  isActive: Boolean!
+  isVerified: Boolean!
+  lastLoginAt: DateTime
+  lastLogoutAt: DateTime
   name: String
   role: Role!
 }

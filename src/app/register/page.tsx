@@ -1,10 +1,17 @@
-// app/register/page.tsx (or pages/register.tsx if using Pages Router)
 "use client"
 
 import { useState } from "react"
 import { useMutation } from "@apollo/client"
-import { CREATE_USER_MUTATION } from "@/graphql/mutations";
+import { CREATE_USER_MUTATION } from "@/graphql/mutations"
 import { useRouter } from "next/navigation"
+
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+
+import { User, Mail, Lock, Loader2 } from "lucide-react"
 
 export default function Register() {
   const router = useRouter()
@@ -20,7 +27,7 @@ export default function Register() {
     try {
       const { data } = await createUser({ variables: form })
       if (data?.createUser) {
-        router.push("/signin") 
+        router.push("/signin")
       }
     } catch (err) {
       console.error(err)
@@ -28,56 +35,100 @@ export default function Register() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white p-6 rounded-2xl shadow-md space-y-4"
-      >
-        <h2 className="text-2xl font-bold text-center text-gray-800">Create Account</h2>
+    <div className="min-h-screen flex items-center justify-center bg-muted px-4">
+      <Card className="w-full max-w-md shadow-xl border">
+        <CardHeader>
+          <h2 className="text-2xl font-bold text-center">Create Account</h2>
+        </CardHeader>
 
-        <input
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-          placeholder="Full Name"
-          required
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-400"
-        />
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Name */}
+            <div className="space-y-2">
+              <Label htmlFor="name">Full Name</Label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                  <User size={18} />
+                </span>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="John Doe"
+                  className="pl-10"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
 
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder="Email"
-          required
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-400"
-        />
+            {/* Email */}
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                  <Mail size={18} />
+                </span>
+                <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  className="pl-10"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
 
-        <input
-          type="password"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-          placeholder="Password"
-          required
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-400"
-        />
+            {/* Password */}
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                  <Lock size={18} />
+                </span>
+                <Input
+                  id="password"
+                  type="password"
+                  name="password"
+                  placeholder="••••••••"
+                  className="pl-10"
+                  value={form.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
 
-        {error && <p className="text-red-500 text-sm">{error.message}</p>}
+            {error && <p className="text-sm text-red-500 text-center">{error.message}</p>}
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
-        >
-          {loading ? "Registering..." : "Register"}
-        </button>
+            {/* Submit Button */}
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <Loader2 size={18} className="animate-spin" />
+                  Registering...
+                </span>
+              ) : (
+                "Create Account"
+              )}
+            </Button>
+          </form>
 
-        <p className="text-sm text-center text-gray-500">
-          Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a>
-        </p>
-      </form>
+          <div className="my-6">
+            <Separator />
+          </div>
+        </CardContent>
+
+        <CardFooter className="text-center text-sm text-muted-foreground flex justify-center">
+          Already have an account?
+          <a href="/signin" className="ml-1 text-blue-600 hover:underline">
+            Sign in
+          </a>
+        </CardFooter>
+      </Card>
     </div>
   )
 }

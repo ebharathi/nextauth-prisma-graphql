@@ -53,16 +53,30 @@ export const authOptions: NextAuthOptions = {
     signIn: "/signin",
   },
   callbacks: {
-    async signIn({ user }) {
+    async signIn({ user, account }) {
       const existingUser = await prisma.user.findUnique({
         where: { email: user.email! },
       })
+  
+      const now = new Date()
+  
       if (!existingUser) {
         await prisma.user.create({
           data: {
             email: user.email!,
             name: user.name,
             avatar: user.image,
+            isActive: true,
+            lastLoginAt: now,
+            isVerified:true
+          },
+        })
+      } else {
+        await prisma.user.update({
+          where: { email: user.email! },
+          data: {
+            isActive: true,
+            lastLoginAt: now,
           },
         })
       }
@@ -90,7 +104,6 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 }
 
-// ✅ Correct way to use it
 const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST }

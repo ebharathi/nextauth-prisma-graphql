@@ -1,17 +1,14 @@
 // pages/api/graphql.ts
-import { ApolloServer } from "apollo-server-micro"
-import { schema } from "../../../graphql/schema"
+
 import { createContext } from "../../../graphql/context";
+import { schema } from "../../../graphql/schema";
+import { ApolloServer } from "@apollo/server";
+import { startServerAndCreateNextHandler } from "@as-integrations/next";
+const server = new ApolloServer({ schema });
 
-const apolloServer = new ApolloServer({
-  schema,
-  context: createContext as any,
-})
-
-
-const startServer = apolloServer.start()
-
-export default async function handler(req: any, res: any) {
-  await startServer
-  return apolloServer.createHandler({ path: "/api/graphql" })(req, res)
-}
+export default startServerAndCreateNextHandler(server, {
+  context: async (req, res) => {
+    const context :any= createContext({ req, res });
+    return context;
+  },
+});

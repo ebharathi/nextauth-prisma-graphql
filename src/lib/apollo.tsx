@@ -13,6 +13,7 @@ if (process.env.NODE_ENV !== "production") {
 export const client = new ApolloClient({
   uri: "/api/graphql",
   cache: new InMemoryCache(),
+  
 });
 
 export function Apollo({ children }: { children: ReactNode }) {

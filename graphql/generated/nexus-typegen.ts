@@ -57,6 +57,10 @@ export interface NexusGenObjects {
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     email: string; // String!
     id: string; // ID!
+    isActive: boolean; // Boolean!
+    isVerified: boolean; // Boolean!
+    lastLoginAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    lastLogoutAt?: NexusGenScalars['DateTime'] | null; // DateTime
     name?: string | null; // String
     role: NexusGenEnums['Role']; // Role!
   }
@@ -77,13 +81,17 @@ export interface NexusGenFieldTypes {
     createUser: NexusGenRootTypes['User'] | null; // User
   }
   Query: { // field return type
-    ok: boolean; // Boolean!
+    getUser: NexusGenRootTypes['User'] | null; // User
   }
   User: { // field return type
     avatar: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     email: string; // String!
     id: string; // ID!
+    isActive: boolean; // Boolean!
+    isVerified: boolean; // Boolean!
+    lastLoginAt: NexusGenScalars['DateTime'] | null; // DateTime
+    lastLogoutAt: NexusGenScalars['DateTime'] | null; // DateTime
     name: string | null; // String
     role: NexusGenEnums['Role']; // Role!
   }
@@ -94,13 +102,17 @@ export interface NexusGenFieldTypeNames {
     createUser: 'User'
   }
   Query: { // field return type name
-    ok: 'Boolean'
+    getUser: 'User'
   }
   User: { // field return type name
     avatar: 'String'
     createdAt: 'DateTime'
     email: 'String'
     id: 'ID'
+    isActive: 'Boolean'
+    isVerified: 'Boolean'
+    lastLoginAt: 'DateTime'
+    lastLogoutAt: 'DateTime'
     name: 'String'
     role: 'Role'
   }

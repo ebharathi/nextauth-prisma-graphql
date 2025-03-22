@@ -24,7 +24,17 @@ model User {
   name           String?
   avatar         String?
   hashedPassword String? 
-  role           Role     @default(User)
   createdAt      DateTime @default(now())
+
+  role           Role     @default(User)
+
+  isVerified     Boolean  @default(false)
+  verifyToken    String?  @db.Text
+
+  isActive       Boolean  @default(false)
+  lastLoginAt    DateTime?
+  lastLogoutAt   DateTime?
+
+  utmSource      String?
 }
 
